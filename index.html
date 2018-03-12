@@ -3,10 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Adila Faruk">
-         
-
-        <title>Exporting Data to a CSV File</title>
+     
+        <title>VcircuitSim</title>
 
 
         <style type="text/css">
@@ -59,26 +57,18 @@
         <div class='container'> 
           <div id="dvData">
                 <table>
+                  
                     <tr>
-                        <th>Column One</th>
-                        <th>Column Two</th>
-                        <th>Column Three</th>
+                        <td>v1 1 0</td>
+                        <td>r1 1 2</td>
+                        <td>r2 2 0 </td>
                     </tr>
                     <tr>
-                        <td>Row 1 Col 1</td>
-                        <td>Row 1 Col 2</td>
-                        <td>Row 1 Col 3 </td>
+                        <td>.dc v1 0v 2v 0.05 v</td>
+                        <td>.probe</td>
+                        <td>.end</td>
                     </tr>
-                    <tr>
-                        <td>Row 2 Col 1</td>
-                        <td>Row 2 Col 2</td>
-                        <td>Row 2 Col 3</td>
-                    </tr>
-                    <tr>
-                        <td>Row 3 Col 1</td>
-                        <td>Row 3 Col 2</td>
-                        <td>Row 3 Col 3</td>
-                    </tr>
+                  
                 </table>
             </div>
             <br/>
@@ -88,19 +78,7 @@
             </div>
 
             <hr/>
-            <div class='refs'>
-            <div class='label'>References</div>
-            <ul>
-
-            <li><a href="http://stackoverflow.com/questions/16078544/export-to-csv-using-jquery-and-html" target="_blank">Export to CSV using jQuery and HTML (Stack Overflow)</a>
-            </li>
-            <li> 
-            <a href="http://adilapapaya.wordpress.com/2013/11/15/exporting-data-from-a-web-browser-to-a-csv-file-using-javascript/" target="_blank">adilapapaya.wordpress.com</a>
-            </li>
-            </ul>
-            </div>
-            <hr/>
-        </div>
+           
 
         <!-- Scripts ----------------------------------------------------------- -->
         <script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
@@ -111,8 +89,7 @@
             function exportTableToCSV($table, filename) {
                 var $headers = $table.find('tr:has(th)')
                     ,$rows = $table.find('tr:has(td)')
-                    // Temporary delimiter characters unlikely to be typed by keyboard
-                    // This is to avoid accidentally splitting the actual contents
+                 
                     ,tmpColDelim = String.fromCharCode(11) // vertical tab character
                     ,tmpRowDelim = String.fromCharCode(0) // null character
                     // actual delimiter characters for CSV format
@@ -160,7 +137,7 @@
             // This must be a hyperlink
             $("#export").click(function (event) {
                 // var outputFile = 'export'
-                var outputFile = window.prompt("What do you want to name your output file (Note: This won't have any effect on Safari)") || 'export';
+                var outputFile = window.prompt("What do you want to name your output file") || 'export';
                 outputFile = outputFile.replace('.csv','') + '.csv'
                  
                 // CSV
