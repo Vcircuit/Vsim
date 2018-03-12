@@ -161,16 +161,20 @@ if (annyang) {
         <div class='container'> 
           <div id="dvData">
                 <table>
-                  
-                    <tr>
-                     <td>v1 1 0</td>
-                    <td>r1 1 2</td>
-                    <td>r2 2 0</td>
-                    <td>.dc v1 0v 2v 0.05 v</td>
-                    <td>.probe</td>
-                    <td>.end</td>
+                  <tr>
+                       
+                        <th>LP Filter</th>
                     </tr>
-               
+                    <tr>
+                        <td>v1 1 0 </td>
+                        <td>r1 1 2 30</td>
+                        <td>c1 2 0 100u </td>
+                    </tr>
+                    <tr>
+                        <td>.ac lin 1 60 60</td>
+                        <td>.end</td>
+                     
+                    </tr>
                   
                 </table>
             </div>
