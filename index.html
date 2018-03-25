@@ -100,7 +100,32 @@ if (annyang) {
                 
                  
             }});  // and here
-   
+   var addPageDesc = function(){
+				$('#pageDescription').focus();
+				
+				var r = document.getElementById('pageDescription');					
+				var speechRecognizer = annyang.getSpeechRecognizer();
+				speechRecognizer.continuous = true;
+				speechRecognizer.interimResults = true;
+
+				var finalTranscripts = '';
+
+				speechRecognizer.onresult = function(event){
+					var interimTranscripts = '';
+					for(var i = event.resultIndex; i < event.results.length; i++){
+						var transcript = event.results[i][0].transcript;
+						transcript.replace("\n", "<br>");							
+						if(event.results[i].isFinal){
+							finalTranscripts += transcript;
+						}else{
+							interimTranscripts += transcript;
+						}
+					}					
+					r.innerHTML = finalTranscripts + interimTranscripts;
+				};
+				speechRecognizer.onerror = function (event) {
+				};
+			};
   
   // Add our commands to annyang
   annyang.addCommands(commands);
