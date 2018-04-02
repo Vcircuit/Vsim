@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>C:\Users\DELL\Downloads\eSim-Windows-Installer\eSim\Examples\RC\RC.sch</source>
+    <source>https://github.com/FOSSEE/eSim/blob/master/Examples/RC/RC.sch</source>
     <date>04/01/18 21:34:26</date>
     <tool>Eeschema 4.0.2-stable</tool>
     <sheet number="1" name="/" tstamps="/">
@@ -111,13 +111,13 @@
   </libparts>
   <libraries>
     <library logical="eSim_Devices">
-      <uri>C:\Program Files (x86)\KiCad\share\library\eSim_Devices.lib</uri>
+      <uri>https://github.com/FOSSEE/eSim/blob/master/kicadSchematicLibrary/eSim_Devices.lib</uri>
     </library>
     <library logical="eSim_Plot">
-      <uri>C:\Program Files (x86)\KiCad\share\library\eSim_Plot.lib</uri>
+      <uri>https://github.com/FOSSEE/eSim/blob/master/kicadSchematicLibrary/eSim_Plot.lib</uri>
     </library>
     <library logical="eSim_Sources">
-      <uri>C:\Program Files (x86)\KiCad\share\library\eSim_Sources.lib</uri>
+      <uri>https://github.com/FOSSEE/eSim/blob/master/kicadSchematicLibrary/eSim_Sources.lib</uri>
     </library>
   </libraries>
   <nets>
