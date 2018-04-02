@@ -100,185 +100,158 @@ if (annyang) {
                 
                  
             }});  // and here
-   var addPageDesc = function(){
-				$('#pageDescription').focus();
+  
 				
-				var r = document.getElementById('pageDescription');					
-				var speechRecognizer = annyang.getSpeechRecognizer();
-				speechRecognizer.continuous = true;
-				speechRecognizer.interimResults = true;
-
-				var finalTranscripts = '';
-
-				speechRecognizer.onresult = function(event){
-					var interimTranscripts = '';
-					for(var i = event.resultIndex; i < event.results.length; i++){
-						var transcript = event.results[i][0].transcript;
-						transcript.replace("\n", "<br>");							
-						if(event.results[i].isFinal){
-							finalTranscripts += transcript;
-						}else{
-							interimTranscripts += transcript;
-						}
-					}					
-					r.innerHTML = finalTranscripts + interimTranscripts;
-				};
-				speechRecognizer.onerror = function (event) {
-				};
-			};
   
   // Add our commands to annyang
   annyang.addCommands(commands);
     annyang.debug();
   // Start listening. You can call this here, or attach this call to an event, button, etc.
   annyang.start();
-    
-</script>
+    <?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>https://github.com/FOSSEE/eSim/blob/master/Examples/RC/RC.sch</source>
+    <date>04/01/18 21:34:26</date>
+    <tool>Eeschema 4.0.2-stable</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>RC.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="R1">
+      <value>1k</value>
+      <libsource lib="eSim_Devices" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56B86791</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>10u</value>
+      <libsource lib="eSim_Devices" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56B8686C</tstamp>
+    </comp>
+    <comp ref="v1">
+      <value>pwl</value>
+      <footprint>R1</footprint>
+      <libsource lib="eSim_Sources" part="pwl"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56B868AD</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>plot_v1</value>
+      <libsource lib="eSim_Plot" part="plot_v1"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56D46C33</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>plot_v1</value>
+      <libsource lib="eSim_Plot" part="plot_v1"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56D46CCE</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="eSim_Devices" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C?</fp>
+        <fp>C_????_*</fp>
+        <fp>C_????</fp>
+        <fp>SMD*_c</fp>
+        <fp>Capacitor*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="eSim_Devices" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>Resistor_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="eSim_Plot" part="plot_v1">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">plot_v1</field>
+      </fields>
+      <pins>
+        <pin num="~" name="~" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="eSim_Sources" part="pwl">
+      <footprints>
+        <fp>1_pin</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">v</field>
+        <field name="Value">pwl</field>
+        <field name="Footprint">R1</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+" type="input"/>
+        <pin num="2" name="-" type="input"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="eSim_Devices">
+      <uri>https://github.com/FOSSEE/eSim/blob/master/kicadSchematicLibrary/eSim_Devices.lib</uri>
+    </library>
+    <library logical="eSim_Plot">
+      <uri>https://github.com/FOSSEE/eSim/blob/master/kicadSchematicLibrary/eSim_Plot.lib</uri>
+    </library>
+    <library logical="eSim_Sources">
+      <uri>https://github.com/FOSSEE/eSim/blob/master/kicadSchematicLibrary/eSim_Sources.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="out">
+      <node ref="R1" pin="2"/>
+      <node ref="C1" pin="1"/>
+      <node ref="U2" pin="~"/>
+    </net>
+    <net code="2" name="in">
+      <node ref="R1" pin="1"/>
+      <node ref="v1" pin="1"/>
+      <node ref="U1" pin="~"/>
+    </net>
+    <net code="3" name="GND">
+      <node ref="C1" pin="2"/>
+      <node ref="v1" pin="2"/>
+    </net>
+  </nets>
+</export>
+© 2018 GitHub, Inc.
 
-
-        <style type="text/css">
-            body{
-                font-family: sans-serif;
-                font-weight:300;
-                padding-top:30px;
-                color:#666;
-            }
-            .container{
-                text-align:center;  
-            }
-            a{ color:#1C2045; font-weight:350;}
-            table{
-                font-weight:300;
-                margin:0px auto;
-                border: 1px solid #1C2045;
-                padding:5px;
-                color:#666;
-            }
-            th,td{ 
-                border-bottom: 1px solid #dddddd;
-                text-align:center;
-                margin: 10px;
-                padding:0 10px;
-            }
-            hr{ 
-                border:0;
-                border-top: 1px solid #E7C254;
-                margin:20px auto;
-                width:50%;
-            }
-            .button{
-                background-color:#1C2045;
-                color:#E7C254;
-                padding:5px 20px;
-                max-width: 300px;
-                line-height:1.5em;
-                text-align:center;
-                margin:5px auto;
-            }
-            .button a{ color:#E7C254;}
-            .refs{ display:block; margin:auto; text-align:left; max-width:500px; }
-            .refs .label{  font-size:1.4em;}
-            .refs > ul{ margin-top:10px; line-height:1.5em;}
-        </style>
-    </head>
-
-    <body>
-        <div class='container'> 
-          <div id="dvData">
-                <table>
-                  <tr>
-                       
-                        <th>LP Filter</th>
-                    </tr>
-                    <tr>
-                        <td>v1 1 0 </td>
-                        <td>r1 1 2 30</td>
-                        <td>c1 2 0 100u </td>
-                    </tr>
-                    <tr>
-                        <td>.ac lin 1 60 60</td>
-                        <td>.end</td>
-                     
-                    </tr>
-                  
-                </table>
-            </div>
-            <br/>
-            <div class='button'>
-                <a href="#" id ="export" role='button'>Click to Save File
-                </a>
-            </div>
-
-            <hr/>
-           
-
-        <!-- Scripts ----------------------------------------------------------- -->
-        <script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
-        <!-- If you want to use jquery 2+: https://code.jquery.com/jquery-2.1.0.min.js -->
-        <script type='text/javascript'>
-        $(document).ready(function () {
-            console.log("HELLO")
-            function exportTableToCSV($table, filename) {
-                var $headers = $table.find('tr:has(th)')
-                    ,$rows = $table.find('tr:has(td)')
-                 
-                    ,tmpColDelim = String.fromCharCode(11) // vertical tab character
-                    ,tmpRowDelim = String.fromCharCode(0) // null character
-                    // actual delimiter characters for CSV format
-                    ,colDelim = '","'
-                    ,rowDelim = '"\r\n"';
-                    // Grab text from table into CSV formatted string
-                    var csv = '"';
-                    csv += formatRows($headers.map(grabRow));
-                    csv += rowDelim;
-                    csv += formatRows($rows.map(grabRow)) + '"';
-                    // Data URI
-                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
-                $(this)
-                    .attr({
-                    'download': filename
-                        ,'href': csvData
-                        //,'target' : '_blank' //if you want it to open in a new window
-                });
-                //------------------------------------------------------------
-                // Helper Functions 
-                //------------------------------------------------------------
-                // Format the output so it has the appropriate delimiters
-                function formatRows(rows){
-                    return rows.get().join(tmpRowDelim)
-                        .split(tmpRowDelim).join(rowDelim)
-                        .split(tmpColDelim).join(colDelim);
-                }
-                // Grab and format a row from the table
-                function grabRow(i,row){
-                     
-                    var $row = $(row);
-                    //for some reason $cols = $row.find('td') || $row.find('th') won't work...
-                    var $cols = $row.find('td'); 
-                    if(!$cols.length) $cols = $row.find('th');  
-                    return $cols.map(grabCol)
-                                .get().join(tmpColDelim);
-                }
-                // Grab and format a column from the table 
-                function grabCol(j,col){
-                    var $col = $(col),
-                        $text = $col.text();
-                    return $text.replace('"', '""'); // escape double quotes
-                }
-            }
-            // This must be a hyperlink
-            $("#export").click(function (event) {
-                // var outputFile = 'export'
-                var outputFile = window.prompt("What do you want to name your output file") || 'export';
-                outputFile = outputFile.replace('.csv','') + '.csv'
-                 
-                // CSV
-                exportTableToCSV.apply(this, [$('#dvData>table'), outputFile]);
-                
-                // IF CSV, don't do event.preventDefault() or return false
-                // We actually need this to be a typical hyperlink
-            });
-        });
+         
+        
+        
            
             
     </script>
