@@ -121,15 +121,10 @@ U1  in plot_v1
 U2  out plot_v1		
 .end
 </pre>
+        />
     </div>
 
-     <textarea id=""{ Netlist File}
-<h7 id=r1data>R1 in out</h7><h7>k</h7>		
-C1  out GND 10u		
-v1  in GND pwl		
-U1  in plot_v1		
-U2  out plot_v1		
-.end" " </textarea>
+     
         <input id="inputFileNameToSaveAs"></input>
         <button onclick="saveTextAsFile()">Save Text to File</button>
   
@@ -137,7 +132,13 @@ U2  out plot_v1
  
 function saveTextAsFile()
 {
-    var textToSave = document.getElementById("inputTextToSave").value;
+    var textToSave = document.getElementById("{ Netlist File}
+<h7 id=r1data>R1 in out </h7><h7>k</h7>		
+C1  out GND 10u		
+v1  in GND pwl		
+U1  in plot_v1		
+U2  out plot_v1		
+.end").value;
     var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
     var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
     var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
