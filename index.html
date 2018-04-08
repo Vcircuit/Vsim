@@ -113,7 +113,7 @@ if (annyang) {
         </p>
     </div>
 <div>
-   <p id="text" <pre>Netlist File
+   id="text" <pre>Netlist File
 <h7 id=r1data>R1 in out </h7><h7>k</h7>		
 C1  out GND 10u		
 v1  in GND pwl		
@@ -121,7 +121,7 @@ U1  in plot_v1
 U2  out plot_v1		
 .end
 </pre>
-    </p>
+    
     </div>
 
      
@@ -151,19 +151,6 @@ function saveTextAsFile()
 function destroyClickedElement(event)
 {
     document.body.removeChild(event.target);
-}
- 
-function loadFileAsText()
-{
-    var fileToLoad = document.getElementById("fileToLoad").files[0];
- 
-    var fileReader = new FileReader();
-    fileReader.onload = function(fileLoadedEvent) 
-    {
-        var textFromFileLoaded = fileLoadedEvent.target.result;
-        document.getElementById("inputTextToSave").value = textFromFileLoaded;
-    };
-    fileReader.readAsText(fileToLoad, "UTF-8");
 }
  
 </script>
