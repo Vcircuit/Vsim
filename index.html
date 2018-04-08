@@ -113,7 +113,7 @@ if (annyang) {
         </p>
     </div>
 <div>
-    <pre>{ Netlist File}
+   <p id="text" <pre>Netlist File
 <h7 id=r1data>R1 in out </h7><h7>k</h7>		
 C1  out GND 10u		
 v1  in GND pwl		
@@ -121,7 +121,7 @@ U1  in plot_v1
 U2  out plot_v1		
 .end
 </pre>
-        />
+    </p>
     </div>
 
      
@@ -132,13 +132,7 @@ U2  out plot_v1
  
 function saveTextAsFile()
 {
-    var textToSave = document.getElementById("{ Netlist File}
-<h7 id=r1data>R1 in out </h7><h7>k</h7>		
-C1  out GND 10u		
-v1  in GND pwl		
-U1  in plot_v1		
-U2  out plot_v1		
-.end").value;
+    var textToSave = document.getElementById("text").value;
     var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
     var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
     var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
