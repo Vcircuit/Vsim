@@ -112,7 +112,7 @@ if (annyang) {
             
         </p>
     </div>
-<div> 
+<div id="text"> 
  <pre>Netlist File
 <h7 id=r1data>R1 in out </h7><h7>k</h7>		
 C1  out GND 10u		
@@ -132,7 +132,7 @@ U2  out plot_v1
  
 function saveTextAsFile()
 {
-    var textToSave = document.getElementById("text").value;
+    var textToSave = document.getElementById("text")innerHTML;
     var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
     var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
     var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
