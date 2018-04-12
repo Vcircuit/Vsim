@@ -1,4 +1,3 @@
-<!Doctype html>
 <html>
 
 <head>
@@ -6,75 +5,41 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="http://use.edgefonts.net/advent-pro:n2,n5,n7,n4,n1,n6,n3:all.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-<script>
-    var i;var num;var count=0;var res = "";var R1; var R2;
-    var Volts;
-if (annyang) {
-  // Let's define our first command. First the text we expect, and then the function it should call
-  var commands = {
-    'hello' : function(){}
-      
-  }};
-    annyang.addCallback('result', function(userSaid) {
-        for(i = 0;i < 5; i++)
-            { //res = Number.isNaN(userSaid[i]);
-              if(count==0){
-                  R1 = userSaid[i].replace(/^\D+|\D+$/g, "");
-                  //if(res == "false"){
-                     
-                 
-                  console.log(R1)
-                  count=count+1;
-                  var test = document.getElementById("r1").innerHTML = R1;
-                  document.getElementById("r1data").innerHTML = r1data.innerHTML += R1;
-             
-              }
-                if(count>0)
-                {
+    <script>
+        var i;
+        var num;
+        var count = 0;
+        var res = "";
+        var R1;
+        var R2;
+        var Volts;
+        if (annyang) {
+            var commands = {
+                'hello': function() {}
+            }
+        };
+        annyang.addCallback('result', function(userSaid) {
+            for (i = 0; i < 5; i++) { //res = Number.isNaN(userSaid[i]);
+                if (count == 0) {
+                    R1 = userSaid[i].replace(/^\D+|\D+$/g, "");
+                    console.log(R1)
+                    count = count + 1;
+                    var test = document.getElementById("r1").innerHTML = R1;
+                    document.getElementById("r1data").innerHTML = r1data.innerHTML += R1;
+                }
+                if (count > 0) {
                     count = 0;
                     break;
                 }
-                
-                  
-              
-                
-                 
-            }}); //check here
-   
-    annyang.addCallback('result', function(userSaid) {
-        for(i = 0;i < 5; i++)
-            { //res = Number.isNaN(userSaid[i]);
-              if(count==0){
-                  C1 = userSaid[i].replace(/^\D+|\D+$/g, "");
-                  //if(res == "false"){
-                     
-                 
-                  console.log(C1)
-                  count=count+1;
-                  document.getElementById("c1").innerHTML = C1;
-             
-              }
-                if(count>0)
-                {
-                    count = 0;
-                    break;
-                }
-                
-                  
-              
-                
-                 
-            }});  // and here
-  
-  
-  // Add our commands to annyang
-  annyang.addCommands(commands);
-    annyang.debug();
-  // Start listening. You can call this here, or attach this call to an event, button, etc.
-  annyang.start();
-    
-</script>
-   
+            }
+        });
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+        annyang.debug();
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    </script>
+
     <title>
         VCircuitSim
     </title>
@@ -86,30 +51,21 @@ if (annyang) {
             VCircuitSim
         </h1>
     </div>
-    <div>
-       <p>
-          Enter R1 =
-       </p>
-        
+    <div style="padding-left: 100px;padding-top: 50px;">
+        <p>
+            Enter R1 =
+        </p>
+
     </div>
     <div id=r1>
         <p>
-            
+
         </p>
     </div>
-    <div>
-       <p>
-          Enter C1 =
-       </p>
-        
-    </div>
-    <div id="c1">
-        <p>
-            
-        </p>
-    </div>
-<div id="text"> 
- <pre>Netlist File
+
+    <div id="text" style="padding-top: 100px; padding-bottom: 50px;padding-left: 40%; padding-right: 20%">
+
+        <pre>Netlist File
 <h7 id=r1data>R1 1 2 </h7><h7>k</h7>		
 C1 1 3 10Uf
 V1 2 0 PWL(0.01 1 0.02 2 0.03 3 0.04 4) rser=0.1
@@ -118,42 +74,26 @@ in 2 3 4
 .op
 .end
 </pre>
-    
+
+    </div>
+    <div style="text-align: center">
+
+        <button onclick="download()" style="text-align: center">Generate Netlist</button>
+
     </div>
 
-     
-        <input id="inputFileNameToSaveAs"></input>
-        <button onclick="saveTextAsFile()">Save Text to File</button>
-  
-    <script type="text/javascript">
- 
-function saveTextAsFile()
-{
-    var textToSave = document.getElementById("text").innerHTML;
-    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
-    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
- 
-    var downloadLink = document.createElement("a");
-    downloadLink.download = fileNameToSaveAs;
-    downloadLink.innerHTML = "Download File";
-    downloadLink.href = textToSaveAsURL;
-    downloadLink.onclick = destroyClickedElement;
-    downloadLink.style.display = "none";
-    document.body.appendChild(downloadLink);
- 
-    downloadLink.click();
-}
- 
-function destroyClickedElement(event)
-{
-    document.body.removeChild(event.target);
-}
- 
-</script>
-<script>
-var str = $( "pre:first" ).text();
-$( "pre:last" ).html( str );
-</script>
-</body>
-</html>
+    <script src="FileSaver.js"></script>
+    <script>
+        function download() {
+            var data = document.getElementById("text").innerHTML;
+            var textToSave = $(data).text();
+            var blob = new Blob([textToSave], {
+                type: "text/plain;charset=utf-8"
+            });
+            saveAs(blob, "Netlist.cir");
+        }
+    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+             </body>
+             </html>
+.
