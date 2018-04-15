@@ -1,0 +1,246 @@
+
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <script src="http://use.edgefonts.net/advent-pro:n2,n5,n7,n4,n1,n6,n3:all.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+       
+        <title>VcircuitSim</title>
+        
+<script>
+    var i;var num;var count=0;var res = "";var R1; var R2;
+    var Volts;
+    
+if (annyang) {
+
+  var commands = {
+    'hello' : function(){}
+      
+  }};
+    annyang.addCallback('result', function(userSaid) {
+        for(i = 0;i < 5; i++)
+            { //res = Number.isNaN(userSaid[i]);
+              if(count==0){
+                  R1 = userSaid[i].replace(/^\D+|\D+$/g, "");
+                  //if(res == "false"){
+                     
+                 
+                  console.log(R1)
+                  count=count+1;
+                  document.getElementById("r1").innerHTML = R1;
+             
+              }
+                if(count>0)
+                {
+                    count = 0;
+                    break;
+                }
+                
+                  
+              
+                
+                 
+            }}); //check here
+   
+    annyang.addCallback('result', function(userSaid) {
+        for(i = 0;i < 5; i++)
+            { //res = Number.isNaN(userSaid[i]);
+              if(count==0){
+                  R2 = userSaid[i].replace(/^\D+|\D+$/g, "");
+                  //if(res == "false"){
+                     
+                 
+                  console.log(R1)
+                  count=count+1;
+                  document.getElementById("r2").innerHTML = R2;
+             
+              }
+                if(count>0)
+                {
+                    count = 0;
+                    break;
+                }
+                
+                  
+              
+                
+                 
+            }});  // and here
+  
+  
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+    annyang.debug();
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+    
+</script>
+   
+    <title>
+        VCircuitSim
+    </title>
+</head>
+
+<body>
+    <div class="w3-container w3-blue w3-center">
+        <h1>
+            VCircuitSim
+        </h1>
+    </div>
+    <div>
+       <p>
+          Enter R1 =
+       </p>
+        
+    </div>
+    <div id=r1>
+        <p>
+            
+        </p>
+    </div>
+    <div>
+       <p>
+          Enter R2 =
+       </p>
+        
+    </div>
+    <div id=r2>
+        <p>
+            
+        </p>
+    </div>
+    
+
+        <style type="text/css">
+            body{
+                font-family: sans-serif;
+                font-weight:300;
+                padding-top:30px;
+                color:#666;
+            }
+            .container{
+                text-align:center;  
+            }
+            a{ color:#1C2045; font-weight:350;}
+            table{
+                font-weight:300;
+                margin:0px auto;
+                border: 1px solid #1C2045;
+                padding:5px;
+                color:#666;
+            }
+            th,td{ 
+                border-bottom: 1px solid #dddddd;
+                text-align:center;
+                margin: 10px;
+                padding:0 10px;
+            }
+            hr{ 
+                border:0;
+                border-top: 1px solid #E7C254;
+                margin:20px auto;
+                width:50%;
+            }
+            .button{
+                background-color:#1C2045;
+                color:#E7C254;
+                padding:5px 20px;
+                max-width: 300px;
+                line-height:1.5em;
+                text-align:center;
+                margin:5px auto;
+            }
+            .button a{ color:#E7C254;}
+            .refs{ display:block; margin:auto; text-align:left; max-width:500px; }
+            .refs .label{  font-size:1.4em;}
+            .refs > ul{ margin-top:10px; line-height:1.5em;}
+        </style>
+    </head>
+
+    <body>
+        <div class='container'> 
+          <div id="dvData">
+                <table>
+                    <tr>
+                        <th>R1</th>
+                        <th>R2</th>
+                    </tr>
+                      <tr>
+                          <td>  </td>
+                          <td>  </td>
+                    </tr>
+    
+                </table>
+            </div>
+            <div class='button'>
+                <a href="#" id ="export" role='button'>Save file
+                </a>
+            
+        <script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
+    
+        <script type='text/javascript'>
+        $(document).ready(function () {
+            console.log("HELLO")
+            function exportTableToCSV($table, filename) {
+                var $headers = $table.find('tr:has(th)')
+                    ,$rows = $table.find('tr:has(td)')
+                    ,tmpColDelim = String.fromCharCode(11) // vertical tab character
+                    ,tmpRowDelim = String.fromCharCode(0) // null character
+                    // actual delimiter characters for CSV format
+                    ,colDelim = '","'
+                    ,rowDelim = '"\r\n"';
+                    // Grab text from table into CSV formatted string
+                    var csv = '"';
+                    csv += formatRows($headers.map(grabRow));
+                    csv += rowDelim;
+                    csv += formatRows($rows.map(grabRow)) + '"';
+                    // Data URI
+                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+                $(this)
+                    .attr({
+                    'download': filename
+                        ,'href': csvData
+                        //,'target' : '_blank' //if you want it to open in a new window
+                });
+                
+                function formatRows(rows){
+                    return rows.get().join(tmpRowDelim)
+                        .split(tmpRowDelim).join(rowDelim)
+                        .split(tmpColDelim).join(colDelim);
+                }
+              
+                function grabRow(i,row){
+                     
+                    var $row = $(row);
+                  
+                    var $cols = $row.find('td'); 
+                    if(!$cols.length) $cols = $row.find('th');  
+                    return $cols.map(grabCol)
+                                .get().join(tmpColDelim);
+                }
+             
+                function grabCol(j,col){
+                    var $col = $(col),
+                        $text = $col.text();
+                    return $text.replace('"', '""'); 
+                }
+            }
+           
+            $("#export").click(function (event) {
+                // var outputFile = 'export'
+                var outputFile = window.prompt("Save file as || 'export';
+                outputFile = outputFile.replace('.csv','') + '.csv'
+                 
+                // CSV
+                exportTableToCSV.apply(this, [$('#dvData>table'), outputFile]);
+              
+            });
+        });
+    </script>
+                
+    </body>
+</html>

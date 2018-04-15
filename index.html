@@ -15,10 +15,13 @@
         var R2;
         var Volts;
         if (annyang) {
+
             var commands = {
                 'hello': function() {}
+
             }
         };
+
         annyang.addCallback('result', function(userSaid) {
             for (i = 0; i < 5; i++) { //res = Number.isNaN(userSaid[i]);
                 if (count == 0) {
@@ -27,6 +30,7 @@
                     count = count + 1;
                     var test = document.getElementById("r1").innerHTML = R1;
                     document.getElementById("r1data").innerHTML = r1data.innerHTML += R1;
+
                 }
                 if (count > 0) {
                     count = 0;
@@ -34,6 +38,15 @@
                 }
             }
         });
+
+
+
+
+
+
+
+
+
         // Add our commands to annyang
         annyang.addCommands(commands);
         annyang.debug();
