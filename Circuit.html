@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Circuits</h2>
+
+<button onclick="myFunction()">Click to Start</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var txt;
+    var circuit = prompt("Please enter the file you wish to choose:", "RC");
+    if (circuit== null || circuit == "") {
+        txt = "User cancelled the prompt.";
+    } else {
+        txt = "So lets begin with " + circuit + "! ";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+</body>
+</html>
+
+--------------
+Start
