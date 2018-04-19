@@ -26,3 +26,78 @@ function myFunction() {
 
 --------------
 Start
+
+
+<html>
+    <body>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="http://use.edgefonts.net/advent-pro:n2,n5,n7,n4,n1,n6,n3:all.js"></script>
+    
+    <div class="w3-container w3-red w3-center">
+        <h1>
+            RC
+        </h1>
+    </div>
+    <div id="text" style="padding-top: 100px; padding-bottom: 50px;padding-left: 40%; padding-right: 20%">
+    <img src="http://i.imgur.com/9HQ6c9n.png" align="center" style="width:200px;height:200px;">
+    </div>
+
+    
+    
+                 <div id="controls">
+                    
+                    <form id="input-controls" action="#">
+                        <h3>Components</h3>
+                        <label for="voltage">Voltage (Volts):</label><br />
+                        <input type="text" id="voltage" value="10" /><br />
+                        <br />
+                        <label for="resistance">Resistance (Ohms):</label><br />
+                        <input type="text" id="resistance" value="100" /><br />
+                        <br />
+                        <label for="capacitance">Capacitance (Farad):</label><br />
+                        <input type="text" id="capacitance" value="0.001" /><br />
+                    </form>
+                </div>
+<div id="text"> 
+ <pre>Netlist File
+<h7 id=r1data>R1 in out </h7><h7>k</h7>		
+C1  out GND 10u		
+v1  in GND pwl		
+U1  in plot_v1		
+U2  out plot_v1		
+.end
+</pre>
+    
+    </div>
+     
+        <input id="inputFileNameToSaveAs"></input>
+        <button onclick="saveTextAsFile()">Save Text to File</button>
+  
+    <script type="text/javascript">
+ 
+function saveTextAsFile()
+{
+    var textToSave = document.getElementById("text").innerHTML;
+    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+ 
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+ 
+    downloadLink.click();
+}
+ 
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target);
+}
+ 
+</script>
+    </body>
+</html>
